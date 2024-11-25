@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  podalize:
+    build: .
+    container_name: podalize_container
+    environment:
+      - PATH2AUDIOS=/app/data
+      - PATH2LOGS=/app/data/logs
+      - VERBOSE=False
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+    command: ["/bin/bash", "-c", "source activate podalize && streamlit run podalize_app.py"]
